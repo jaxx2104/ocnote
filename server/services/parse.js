@@ -7,7 +7,7 @@ exports.parseItem = (data) => {
     if (item.imageURL) {
       const imageUrl = item.imageURL.large
       console.log(__dirname, setting.basedir)
-      getImage(imageUrl, `${setting.basedir}/images/items/${path.basename(imageUrl)}`)
+      getImage(imageUrl, `${setting.basedir}/img/items/${path.basename(imageUrl)}`)
     }
     saveItem(item)
   }
@@ -17,7 +17,7 @@ exports.parseActress = (data) => {
   for (const act of data.actress) {
     if (act.imageURL) {
       const imageUrl = act.imageURL.large
-      getImage(imageUrl, `${setting.basedir}/images/actress/${path.basename(imageUrl)}`)
+      getImage(imageUrl, `${setting.basedir}/img/actress/${path.basename(imageUrl)}`)
     }
     saveActress(act)
   }

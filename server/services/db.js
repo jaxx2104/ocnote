@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import log from '~/src/services/log'
+import log from '~/server/services/log'
 import { db as config } from '~/config'
 
 const db = new Sequelize(config.database, config.user, config.password, {

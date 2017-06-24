@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import db from '~/src/services/db'
+import db from '~/server/services/db'
 
 const Actress = db.define('actress', {
   name: { type: Sequelize.STRING },

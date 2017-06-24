@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import db from '~/src/services/db'
+import db from '~/server/services/db'
 
 const Item = db.define('item', {
   product_id: { type: Sequelize.INTEGER },
