@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <h1 class="logo">Logo</h1>
-    <img src="./assets/logo.png">
-    <div class="navi">
-      <router-link to="/">Top</router-link>
-      <router-link to="/actress">Actress</router-link>
-      <router-link to="/item">Item</router-link>
+    <Navibar></Navibar>
+    <div class="contents">
+      <Brand></Brand>
+      <router-view></router-view>
     </div>
-    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import "./assets/edosz.ttf";
+import axios from 'axios'
+import Navibar from "./components/Navibar"
+import Brand from "./components/Brand"
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {Navibar, Brand},
+  data () {
+    return {
+      count: 0,
+      items: []
+    }
+  },
+  mounted () {
+    const instance = axios.create({
+      baseURL: 'http://localhost:3000',
+      timeout: 1000,
+      headers: {'X-Custom-Header': 'foobar'}
+    });
+    instance.get('/item')
+      .then((response) => {
+        this.count = response.data.count
+        this.items = response.data.rows
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 }
 </script>
 
 <style>
-
-
 body {
-  text-align: center;
   color: #F5F5F5;
   background: #283137;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -33,7 +53,7 @@ body {
 }
 
 h1, h2 {
-  color: #E2325A;
+  color: #D81B60;
   font-weight: 900;
 }
 
@@ -48,11 +68,14 @@ li {
 }
 
 a {
-  color: #E2325A;
+  color: #fff;
 }
 
-#app {
-  margin-top: 60px;
+.contents {
+  margin: 0 auto 0 auto;
+  word-wrap: break-word;
+  clear: both;
+
 }
 
 .logo {

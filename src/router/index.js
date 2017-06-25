@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Top from '@/pages/Top'
 import Actress from '@/pages/Actress'
 import Item from '@/pages/Item'
+import Search from '@/pages/Search'
 
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'Top',
-      component: Top
+      component: Search
     },
     {
       path: '/actress',
@@ -24,6 +25,11 @@ export default new Router({
       path: '/item',
       name: 'Item',
       component: Item
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search
     }
   ],
   scrollBehavior (to, from, savedPosition) {

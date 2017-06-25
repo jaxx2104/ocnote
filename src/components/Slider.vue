@@ -1,53 +1,56 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="slider">
+    <p class="slider-label">{{title}}</p>
+    <div :id="'slider-' + this.title"></div>
   </div>
 </template>
 
 <script>
+import noUiSlider from 'materialize-css/extras/noUiSlider/nouislider.min.js'
+import wNumb from 'wnumb'
+
 export default {
-  name: 'hello',
+  name: 'Slider',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
     }
+  },
+  props: [
+    "title",
+    "min",
+    "max"
+  ],
+  mounted () {
+    const slider = document.getElementById(`slider-${this.title}`);
+    const options = {
+	    connect: true,
+      tooltips: true,
+      format: wNumb({
+	    	decimals: 0
+    	}),
+      range: {
+        'min': [ 0 ],
+        'max': [ 100 ]
+      },
+      start: [ this.min, this.max ]
+    }
+    noUiSlider.create(slider, options);
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style>
+.slider p {
+  font-weight: 900;
+  text-align: left;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+.noUi-horizontal .noUi-handle, .noUi-vertical .noUi-handle {
+  background-color: #D81B60;
 }
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+.noUi-target.noUi-horizontal .noUi-tooltip {
+  background-color: #D81B60;
 }
-
-a {
-  color: #42b983;
+.noUi-connect {
+  background-color: #D81B60;
 }
 </style>

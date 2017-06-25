@@ -3,6 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Material from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+import 'nouislider/distribute/nouislider.min.css'
+import 'materialize-css/extras/noUiSlider/nouislider.css'
+Vue.use(Material)
+Vue.material.registerTheme('default', {
+  primary: { color: 'pink', hue: '600' },
+  accent: 'red',
+  warn: 'red',
+  background: { color: 'blue-gray', hue: '800' }
+})
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
