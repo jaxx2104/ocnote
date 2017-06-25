@@ -1,4 +1,4 @@
-import { setting, db } from '../../config.js'
+import { setting, db } from '~/config/db.js'
 import { getImage } from '../services/request.js'
 import path from 'path'
 
@@ -7,9 +7,10 @@ exports.parseItem = (data) => {
     if (item.imageURL) {
       const imageUrl = item.imageURL.large
       console.log(__dirname, setting.basedir)
-      getImage(imageUrl, `${setting.basedir}/images/items/${path.basename(imageUrl)}`)
+      // getImage(imageUrl, `${setting.basedir}/images/items/${path.basename(imageUrl)}`)
     }
-    saveItem(item)
+    console.log(item)
+    // saveItem(item)
   }
 }
 
@@ -17,12 +18,12 @@ exports.parseActress = (data) => {
   for (const act of data.actress) {
     if (act.imageURL) {
       const imageUrl = act.imageURL.large
-      getImage(imageUrl, `${setting.basedir}/images/actress/${path.basename(imageUrl)}`)
+      // getImage(imageUrl, `${setting.basedir}/images/actress/${path.basename(imageUrl)}`)
     }
-    saveActress(act)
+    // saveActress(act)
   }
 }
-
+/*
 const saveItem = (data) => {
   var connection = mysql.createConnection(db)
   const record = {
@@ -62,3 +63,4 @@ const saveActress = (data) => {
   })
   connection.end()
 }
+*/

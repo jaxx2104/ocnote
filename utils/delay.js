@@ -1,4 +1,4 @@
-import { setting } from '../../config.js'
+import { setting } from '~/config/db.js'
 
 const delay = (value) => {
   console.log(value)

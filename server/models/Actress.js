@@ -13,8 +13,8 @@ const Actress = db.define('actress', {
   blood_type: { type: Sequelize.INTEGER },
   hobby: { type: Sequelize.INTEGER },
   prefectures: { type: Sequelize.INTEGER },
-  image: { type: Sequelize.INTEGER },
-},{
+  image: { type: Sequelize.INTEGER }
+}, {
   timestamps: true,
   paranoid: false,
   underscored: true,

@@ -3,22 +3,22 @@ import log4js from 'log4js'
 log4js.configure({
   'appenders': [
     {
-      'type':     'dateFile',
+      'type': 'dateFile',
       'category': 'system',
       'filename': 'logs/system.log',
-      'pattern':  '-yyyy-MM-dd'
+      'pattern': '-yyyy-MM-dd'
     },
     {
-      'type':     'dateFile',
+      'type': 'dateFile',
       'category': 'access',
       'filename': 'logs/access.log',
-      'pattern':  '-yyyy-MM-dd'
+      'pattern': '-yyyy-MM-dd'
     },
     {
-      'type':     'dateFile',
+      'type': 'dateFile',
       'category': 'error',
       'filename': 'logs/error.log',
-      'pattern':  '-yyyy-MM-dd'
+      'pattern': '-yyyy-MM-dd'
     }
   ],
   categories: {
