@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize'
 import db from '~/server/services/db'
+import Item from './Item'
 
 const Actress = db.define('actress', {
   name: { type: Sequelize.STRING },
@@ -20,5 +21,7 @@ const Actress = db.define('actress', {
   underscored: true,
   freezeTableName: true
 })
+
+Actress.hasMany(Item, {foreignKey: 'actress_id'})
 
 export default Actress

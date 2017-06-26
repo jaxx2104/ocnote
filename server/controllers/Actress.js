@@ -1,4 +1,5 @@
 import Model from '~/server/models/Actress'
+import Item from '~/server/models/Item'
 
 class Actress {
   constructor () {
@@ -66,8 +67,15 @@ class Actress {
       attributes: this.attributes,
       where: where,
       offset: this.offset,
-      limit: this.limit
+      limit: this.limit,
       // order: [query.sort, 'DESC']
+      include: [
+        {
+          model: Item,
+          separate: false,
+          required: true
+        }
+      ]
     })
   }
 }
