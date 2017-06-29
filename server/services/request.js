@@ -3,7 +3,6 @@ import base64 from 'urlsafe-base64'
 import { apis, options } from '~/config/db.js'
 import fs from 'fs'
 import qs from 'querystring'
-import path from 'path'
 
 export const getApi = ({key, ext}) => {
   const api = apis[key]
