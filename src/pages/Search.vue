@@ -2,10 +2,10 @@
   <div class="search">
     <h1>{{ title }}</h1>
     <p>{{ msg }}</p>
-      <md-input-container>
-        <label>Keyword</label>
-        <md-input v-model="keyword"></md-input>
-      </md-input-container>
+    <md-input-container>
+      <label>Keyword</label>
+      <md-input v-model="keyword"></md-input>
+    </md-input-container>
     <Slider
       v-for="(param, key) in params"
       :key="key"
