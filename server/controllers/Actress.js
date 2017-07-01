@@ -63,12 +63,19 @@ class Actress {
       }
     }
 
+    if (query.gte_birthday || query.lte_birthday) {
+      where.birthday = {
+        $gte: query.gte_birthday ? query.gte_birthday : '1990-01-01',
+        $lte: query.lte_birthday ? query.lte_birthday : '2020-01-01'
+      }
+    }
+
     return Model.findAndCountAll({
       attributes: this.attributes,
       where: where,
       offset: this.offset,
       limit: this.limit,
-      // order: [query.sort, 'DESC']
+      order: [['bust', 'DESC']],
       include: [
         {
           model: Item,

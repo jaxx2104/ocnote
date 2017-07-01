@@ -35,6 +35,9 @@ export default {
       start: [ this.min, this.max ]
     }
     noUiSlider.create(slider, options);
+    slider.noUiSlider.on('update', (values) => {
+      console.log(values)
+    });
   }
 }
 </script>

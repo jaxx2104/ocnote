@@ -3,6 +3,7 @@
     <Navibar></Navibar>
     <div class="contents">
       <Brand></Brand>
+      <List :items="items"></List>
       <router-view></router-view>
     </div>
   </div>
@@ -13,10 +14,12 @@ import "./assets/edosz.ttf";
 import axios from 'axios'
 import Navibar from "./components/Navibar"
 import Brand from "./components/Brand"
+import List from "./components/List"
+import qs from 'querystring'
 
 export default {
   name: 'app',
-  components: {Navibar, Brand},
+  components: {Navibar, Brand, List},
   data () {
     return {
       count: 0,
@@ -29,7 +32,12 @@ export default {
       timeout: 1000,
       headers: {'X-Custom-Header': 'foobar'}
     });
-    instance.get('/item')
+
+    const option = {
+      gte_birthday: '1992-01-01'
+    }
+
+    instance.get(`/actress?${qs.stringify(option)}`)
       .then((response) => {
         this.count = response.data.count
         this.items = response.data.rows
@@ -49,7 +57,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 500;
-
 }
 
 h1, h2 {
