@@ -17,8 +17,9 @@ class Actress {
       'prefectures',
       'image'
     ]
+    this.sort = 'bust'
     this.offset = 0
-    this.limit = 50
+    this.limit = 20
   }
 
   save () {
@@ -27,6 +28,8 @@ class Actress {
 
   search (query) {
     const where = {}
+
+    this.sort = query.sort ? query.sort : 'hip'
 
     if (query.keyword) {
       where.$or = [
@@ -75,7 +78,7 @@ class Actress {
       where: where,
       offset: this.offset,
       limit: this.limit,
-      order: [['bust', 'DESC']],
+      order: [[this.sort, 'DESC']],
       include: [
         {
           model: Item,

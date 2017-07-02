@@ -1,4 +1,5 @@
 import Model from '~/server/models/Item'
+import Actress from '~/server/models/Actress'
 import path from 'path'
 
 class Item {
@@ -7,12 +8,17 @@ class Item {
       'product_id',
       'title',
       'date',
+      'genre_id',
+      'series_id',
+      'maker_id',
+      'director_id',
       'url',
       'image',
       'sample'
     ]
+    this.sort = 'date'
     this.offset = 0
-    this.limit = 50
+    this.limit = 20
   }
 
   save (data) {
@@ -43,47 +49,12 @@ class Item {
   search (query) {
     const where = {}
 
-    if (query.keyword) {
-      where.$or = [
-        {name: {$like: `%${query.keyword}%`}},
-        {ruby: {$like: `%${query.keyword}%`}}
-      ]
-    }
-
-    if (query.gte_bust || query.lte_bust) {
-      where.bust = {
-        $gte: query.gte_bust ? query.gte_bust : 1,
-        $lte: query.lte_bust ? query.lte_bust : 100
-      }
-    }
-
-    if (query.gte_waist || query.lte_waist) {
-      where.waist = {
-        $gte: query.gte_waist ? query.gte_waist : 1,
-        $lte: query.lte_waist ? query.lte_waist : 100
-      }
-    }
-
-    if (query.gte_hip || query.lte_hip) {
-      where.hip = {
-        $gte: query.gte_hip ? query.gte_hip : 1,
-        $lte: query.lte_hip ? query.lte_hip : 100
-      }
-    }
-
-    if (query.gte_height || query.lte_height) {
-      where.height = {
-        $gte: query.gte_height ? query.gte_height : 1,
-        $lte: query.lte_height ? query.lte_height : 200
-      }
-    }
-
     return Model.findAndCountAll({
       attributes: this.attributes,
       where: where,
       offset: this.offset,
-      limit: this.limit
-      // order: [query.sort, 'DESC']
+      limit: this.limit,
+      order: [[this.sort, 'DESC']]
     })
   }
 }

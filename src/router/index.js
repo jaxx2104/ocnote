@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Top from '@/pages/Top'
 import Actress from '@/pages/Actress'
-import Item from '@/pages/Item'
+import Items from '@/pages/Items'
 import Search from '@/pages/Search'
 
 Vue.use(Router)
@@ -22,9 +21,9 @@ export default new Router({
       component: Actress
     },
     {
-      path: '/item',
-      name: 'Item',
-      component: Item
+      path: '/items/:id',
+      name: 'Items',
+      component: Items
     },
     {
       path: '/search',
