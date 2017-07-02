@@ -1,17 +1,20 @@
 <template>
-  <div class="brand">
-    <h1>{{title}}</h1>
-  </div>
+  <transition name="fade" mode="out-in">
+    <div class="brand" v-if="isShow">
+      <h1>{{title}}</h1>
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
   name: 'Brand',
+  props: ["isShow"],
   data () {
     return {
       title: 'OCNOTE'
     }
-  }
+  },
 }
 </script>
 

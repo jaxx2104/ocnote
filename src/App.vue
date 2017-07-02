@@ -2,50 +2,35 @@
   <div id="app">
     <Navibar></Navibar>
     <div class="contents">
-      <Brand></Brand>
-      <List :items="items"></List>
-      <router-view></router-view>
+      <Brand :isShow="!isLoad"></Brand >
+      <router-view :isShow="isLoad"></router-view>
     </div>
   </div>
 </template>
 
 <script>
 import "./assets/edosz.ttf";
-import axios from 'axios'
 import Navibar from "./components/Navibar"
 import Brand from "./components/Brand"
-import List from "./components/List"
-import qs from 'querystring'
 
 export default {
   name: 'app',
-  components: {Navibar, Brand, List},
+  components: {Navibar, Brand},
   data () {
     return {
-      count: 0,
-      items: []
+      isLoad: false,
     }
   },
   mounted () {
-    const instance = axios.create({
-      baseURL: 'http://localhost:3000',
-      timeout: 1000,
-      headers: {'X-Custom-Header': 'foobar'}
-    });
+    setTimeout(() => {
+      this.isLoad = true
+    }, 1000)
+  },
+  methods: {
+  },
 
-    const option = {
-      gte_birthday: '1992-01-01'
-    }
 
-    instance.get(`/actress?${qs.stringify(option)}`)
-      .then((response) => {
-        this.count = response.data.count
-        this.items = response.data.rows
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+
 }
 </script>
 
@@ -90,4 +75,20 @@ a {
   font-size: 4em;
   color: #F5F5F5;
 }
+
+/* transtion */
+.fade-enter-active {
+  transition: all 1s ease;
+  position: absolute;
+  top: 64px;
+}
+
+.fade-leave-active {
+  transition: all 1s ease;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+
 </style>
